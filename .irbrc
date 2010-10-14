@@ -1,3 +1,5 @@
+puts "Loaded ~/.irbrc"
+
 require 'rubygems' rescue nil
 require 'irb/completion'
 require 'ap'
@@ -13,7 +15,6 @@ IRB.conf[:AUTO_INDENT] = true
 
 # from http://matthewhutchinson.net/2010/9/19/rails-3-bash-aliases-and-irbrc-configs
 
-load wirble
 Wirble.init
 Wirble.colorize
 
