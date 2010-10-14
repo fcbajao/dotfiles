@@ -1,0 +1,12 @@
+[alias]
+  c = commit -m
+  ca = commit -a -m
+  a = add
+  di = diff
+  dic = diff --cached
+  up = pull --rebase
+  st = status
+  out = log origin..HEAD
+[user]
+	name = fcbajao
+	email = fcbajao@gmail.com
