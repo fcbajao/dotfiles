@@ -5,7 +5,11 @@ require 'what_methods'
 require 'wirble'
 require 'hirb'
 
-IRB.conf[:AUTO_INDENT]=true
+
+# remove extra text on irb prompt
+IRB.conf[:PROMPT_MODE] = :SIMPLE
+
+IRB.conf[:AUTO_INDENT] = true
 
 # from http://matthewhutchinson.net/2010/9/19/rails-3-bash-aliases-and-irbrc-configs
 
