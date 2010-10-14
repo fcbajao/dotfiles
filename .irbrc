@@ -6,6 +6,7 @@ require 'ap'
 require 'what_methods'
 require 'wirble'
 require 'hirb'
+require 'interactive_editor'
 
 
 # remove extra text on irb prompt
