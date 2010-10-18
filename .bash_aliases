@@ -1,5 +1,5 @@
 alias v=vim
 alias s=sudo
 alias bx="bundle exec"
-alias bspec="bundler exec rspec"
-alias bcucumber="bundler exec cucumber"
+alias bspec="bundle exec rspec"
+alias bcucumber="bundle exec cucumber"
