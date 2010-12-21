@@ -10,3 +10,8 @@
 [user]
 	name = fcbajao
 	email = fcbajao@gmail.com
+[color]
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
