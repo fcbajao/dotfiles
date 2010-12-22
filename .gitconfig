@@ -8,5 +8,5 @@
   st = status
   out = log origin..HEAD
 [user]
-	name = fcbajao
+	name = Erick Bajao
 	email = fcbajao@gmail.com
