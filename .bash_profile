@@ -9,6 +9,10 @@ alias ballspec="RUBY_GC_MALLOC_LIMIT=90000000 RUBY_FREE_MIN=200000 bundle exec r
 alias ballcucumber="RUBY_GC_MALLOC_LIMIT=90000000 RUBY_FREE_MIN=200000 bundle exec rake cucumber"
 alias balltests="RUBY_GC_MALLOC_LIMIT=90000000 RUBY_FREE_MIN=200000 bundle exec rake spec cucumber"
 alias simulator='open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app'
+alias ssh_to_staging='ey ssh -e carabao_staging_postgres92'
+alias ssh_to_production='ey ssh -e carabao_production_postgres92'
+alias ssh_to_staging_db='ssh deploy@ec2-54-251-16-212.ap-southeast-1.compute.amazonaws.com'
+alias ssh_to_prod_db='ssh deploy@ec2-54-251-87-85.ap-southeast-1.compute.amazonaws.com'
 
 # Git branch in prompt.
 parse_git_branch() {
