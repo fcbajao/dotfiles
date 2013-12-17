@@ -1,9 +1,14 @@
 alias v=vim
 alias s=sudo
-alias bx="bundle exec"
-alias bspec="bundle exec rspec"
-alias bfcucumber="bundle exec cucumber -r features"
 alias hupkill="sudo kill -HUP" # I use this for restarting nginx
+alias bxc="bundle _1.0.21_ exec"
+alias bspec="RUBY_GC_MALLOC_LIMIT=90000000 RUBY_FREE_MIN=200000 bundle exec rspec"
+alias bcucumber="RUBY_GC_MALLOC_LIMIT=90000000 RUBY_FREE_MIN=200000 bundle exec cucumber"
+alias bfcucumber="RUBY_GC_MALLOC_LIMIT=90000000 RUBY_FREE_MIN=200000 bundle exec cucumber -r features"
+alias ballspec="RUBY_GC_MALLOC_LIMIT=90000000 RUBY_FREE_MIN=200000 bundle exec rake spec"
+alias ballcucumber="RUBY_GC_MALLOC_LIMIT=90000000 RUBY_FREE_MIN=200000 bundle exec rake cucumber"
+alias balltests="RUBY_GC_MALLOC_LIMIT=90000000 RUBY_FREE_MIN=200000 bundle exec rake spec cucumber"
+alias simulator='open /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\ Simulator.app'
 
 # Git branch in prompt.
 parse_git_branch() {
