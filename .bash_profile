@@ -1,6 +1,7 @@
 alias v=vim
 alias s=sudo
 alias hupkill="sudo kill -HUP" # I use this for restarting nginx
+alias bx="bundle exec"
 alias bxc="bundle _1.0.21_ exec"
 alias bspec="RUBY_GC_MALLOC_LIMIT=90000000 RUBY_FREE_MIN=200000 bundle exec rspec"
 alias bcucumber="RUBY_GC_MALLOC_LIMIT=90000000 RUBY_FREE_MIN=200000 bundle exec cucumber"
