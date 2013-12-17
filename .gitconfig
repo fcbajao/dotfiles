@@ -15,3 +15,5 @@
   diff = auto
   interactive = auto
   status = auto
+[core]
+	excludesfile = /Users/ricecake/.gitignore_global
