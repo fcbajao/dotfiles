@@ -8,12 +8,15 @@
   st = status
   out = log origin..HEAD
 [user]
-	name = Erick Bajao
-	email = fcbajao@gmail.com
+  name = Erick Bajao
+  email = fcbajao@gmail.com
 [color]
   branch = auto
   diff = auto
   interactive = auto
   status = auto
 [core]
-	excludesfile = /Users/ricecake/.gitignore_global
+  excludesfile = ~/.gitignore_global
+  editor = nvim
+[credential]
+  helper = osxkeychain
