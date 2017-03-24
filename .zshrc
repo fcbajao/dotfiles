@@ -7,6 +7,8 @@ zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "plugins/z", from:oh-my-zsh
 zplug "plugins/bundler", from:oh-my-zsh
+zplug "docker/docker", use:contrib/completion/zsh
+zplug "docker/compose", use:contrib/completion/zsh
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
