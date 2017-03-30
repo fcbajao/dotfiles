@@ -32,9 +32,11 @@ set number
 set ignorecase
 set noswapfile
 set completeopt=longest,menuone
+set hidden " So that we can easily switch buffers without the bang when there are unsaved changes.
 
 " FZF settings
 nnoremap <c-p> :FZF<cr>
+nnoremap <leader>b :Buffers<cr>
 
 " Taken from https://github.com/junegunn/fzf.vim/issues/27#issuecomment-185761539
 function! s:ag_in(...)
