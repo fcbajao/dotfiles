@@ -101,5 +101,6 @@ nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 nmap <silent> <leader>ad <Plug>(ale_detail)
 
-" Vim JSX
+" Vim JSX and JavaScript
 let g:jsx_ext_required = 0
+let g:javascript_plugin_flow = 1
