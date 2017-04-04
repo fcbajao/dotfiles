@@ -20,6 +20,8 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-rails'
 Plug 'w0rp/ale'
 Plug 'kchmck/vim-coffee-script'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-endwise'
 call plug#end()
 
 " General
@@ -86,6 +88,3 @@ let g:elm_setup_keybindings = 0 " Disable because we need some bindings for ale
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 nmap <silent> <leader>e <Plug>(ale_detail)
-let g:ale_linters = {
-\  'javascript': ['standard'],
-\}
