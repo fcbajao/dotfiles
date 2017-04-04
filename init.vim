@@ -24,6 +24,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-endwise'
 Plug 'janko-m/vim-test'
 Plug 'mattn/emmet-vim'
+Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript'
 call plug#end()
 
 " General
@@ -97,4 +99,7 @@ nmap <silent> <leader>g :TestVisit<CR>
 " ale
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
-nmap <silent> <leader>e <Plug>(ale_detail)
+nmap <silent> <leader>ad <Plug>(ale_detail)
+
+" Vim JSX
+let g:jsx_ext_required = 0
