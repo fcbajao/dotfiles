@@ -22,6 +22,8 @@ Plug 'w0rp/ale'
 Plug 'kchmck/vim-coffee-script'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-endwise'
+Plug 'janko-m/vim-test'
+Plug 'mattn/emmet-vim'
 call plug#end()
 
 " General
@@ -83,6 +85,14 @@ let g:deoplete#omni#functions.elm = ['elm#Complete']
 let g:deoplete#omni#input_patterns.elm = '[^ \t]+'
 let g:deoplete#sources.elm = ['omni'] + g:deoplete#sources._
 let g:elm_setup_keybindings = 0 " Disable because we need some bindings for ale
+
+" Vim Test
+let test#strategy = "neovim"
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
 
 " ale
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
