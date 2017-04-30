@@ -2,7 +2,7 @@
 
 " Plugins
 call plug#begin()
-Plug 'morhetz/gruvbox'
+Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline'
 Plug 'elmcast/elm-vim'
 Plug 'jszakmeister/vim-togglecursor'
@@ -26,6 +26,8 @@ Plug 'janko-m/vim-test'
 Plug 'mattn/emmet-vim'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
+Plug 'tpope/vim-eunuch'
+Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 
 " General
@@ -39,6 +41,10 @@ set ignorecase
 set noswapfile
 set completeopt=longest,menuone
 set hidden " So that we can easily switch buffers without the bang when there are unsaved changes.
+
+" Solorize
+set background=dark
+colorscheme solarized
 
 " FZF settings
 nnoremap <c-p> :FZF<cr>
@@ -57,10 +63,6 @@ map <C-Z> <ESC>:tabprevious<CR>
 
 " Copy to system clipboard
 vnoremap  <leader>y  "+y
-
-" Gruvbox
-set background=dark
-colorscheme gruvbox
 
 " Airline
 let g:airline_left_sep= '░'
