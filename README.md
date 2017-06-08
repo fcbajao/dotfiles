@@ -26,6 +26,10 @@ $ brew install neovim/neovim/neovim
 Install the silver searcher
 ```
 $ brew install the_silver_searcher
+
+Install rbenv
+```
+$ brew install rbenv
 ```
 
 ## Installation
@@ -43,3 +47,7 @@ You might also want to install node using nvm that was installed from one of the
 ```
 $ nvm install v7
 ```
+
+## Note about using the solarized color scheme
+
+For the neovim solarized color scheme to properly work, in my case I'm using iTerm, I have to pick the solarized color profile.
