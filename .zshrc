@@ -41,5 +41,4 @@ export EDITOR=nvim
 
 # Since OSX Sierra doesn't save SSH keys into the keychain anymore
 # Ref: https://blog.elao.com/en/tech/ssh-agent-does-not-automatically-load-passphrases-on-the-osx-sierra-keychain/
-ssh-add -K
-ssh-add -A
+ssh-add -KA &> /dev/null
