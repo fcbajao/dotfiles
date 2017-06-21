@@ -38,6 +38,7 @@ setopt share_history # share history between terminals
 eval "$(rbenv init -)"
 export EDITOR=nvim
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.zsh_custom ] && source ~/.zsh_custom # Allow custom stuff that you have per machine.
 
 # Since OSX Sierra doesn't save SSH keys into the keychain anymore
 # Ref: https://blog.elao.com/en/tech/ssh-agent-does-not-automatically-load-passphrases-on-the-osx-sierra-keychain/
