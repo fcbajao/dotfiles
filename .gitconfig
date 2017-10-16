@@ -19,4 +19,6 @@
   excludesfile = ~/.gitignore_global
   editor = nvim
 [credential]
-  helper = osxkeychain
+  helper = cache --timeout=900
+[push]
+  default = current
