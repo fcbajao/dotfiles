@@ -34,6 +34,7 @@ $ brew install zplug
 #### Ubuntu
 
 ```
+# Make sure you create /usr/local/opt and make it writable if it does not exist.
 $ curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
 ```
 
