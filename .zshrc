@@ -30,15 +30,16 @@ bindkey -M emacs '^P' history-substring-search-up
 bindkey -M emacs '^N' history-substring-search-down
 
 # History sharing stuff
-export SAVEHIST=2000
+export HISTSIZE=50000
+export SAVEHIST=$HISTSIZE
 export HISTFILE=~/.zsh_history
 setopt inc_append_history # append every command to history after execute
 setopt share_history # share history between terminals
 
-eval "$(rbenv init -)"
 export EDITOR=nvim
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.zsh_custom ] && source ~/.zsh_custom # Allow custom stuff that you have per machine.
+eval "$(rbenv init -)"
 
 # Since OSX Sierra doesn't save SSH keys into the keychain anymore
 # Ref: https://blog.elao.com/en/tech/ssh-agent-does-not-automatically-load-passphrases-on-the-osx-sierra-keychain/

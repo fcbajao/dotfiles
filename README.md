@@ -4,33 +4,93 @@ My personal dotfiles.
 
 ## Prerequisites
 
-Make zsh your default shell.
+### Make zsh your default shell.
+
+#### OSX
+
 ```
 $ brew install zsh
 # Then append /usr/local/bin/zsh to /etc/shells
 $ chsh -s /usr/local/bin/zsh
 ```
+#### Ubuntu
 
-Install zplug
+```
+$ sudo apt-get update
+$ sudo apt-get upgrade
+$ sudo apt-get install zsh
+$ chsh -s /bin/zsh
+# Exit and re-login
+```
+
+### Install zplug
+
+#### OSX
+
 ```
 $ brew install zplug
 ```
 
-Install neovim with python3 support.
+#### Ubuntu
+
+```
+$ curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh| zsh
+```
+
+### Install neovim with python3 support.
+
+#### OSX
+
 ```
 $ brew install python3
 $ pip3 install neovim --upgrade
 $ brew install neovim/neovim/neovim
 ```
 
-Install the silver searcher
+#### Ubuntu
+
+```
+# Ubuntu ships with Python 2 and 3
+# So let's just instal pip
+$ sudo apt-get install -y python3-pip
+$ pip3 install neovim --upgrade
+# Now we build from source (because I couldn't get apt-get install to work on 14.04)
+# See https://github.com/neovim/neovim/wiki/Building-Neovim for steps
+```
+
+### Install the silver searcher
+
+#### OSX
+
 ```
 $ brew install the_silver_searcher
 ```
 
-Install rbenv
+#### Ubuntu
+
+```
+$ sudo add-apt-repository ppa:pgolm/the-silver-searcher
+$ sudo apt-get update
+$ sudo apt-get install silversearcher-ag
+```
+
+### Install rbenv
+
+#### OSX
+>>>>>>> Stashed changes
+
 ```
 $ brew install rbenv
+```
+
+#### Ubuntu
+
+```
+$ git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+$ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zsh_custom
+# exit and re-login then let's install ruby-build plugin
+$ mkdir -p "$(rbenv root)"/plugins
+$ git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
 ```
 
 ## Installation
