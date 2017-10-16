@@ -52,7 +52,7 @@ nnoremap <leader>b :Buffers<cr>
 
 " Taken from https://github.com/junegunn/fzf.vim/issues/27#issuecomment-185761539
 function! s:ag_in(...)
-  call fzf#vim#ag(join(a:000[1:], ' '), extend({'dir': a:1}, g:fzf#vim#default_layout))
+  call fzf#vim#ag(join(a:000[1:], ' '), extend({'dir': a:1}, fzf#wrap()))
 endfunction
 
 command! -nargs=+ -complete=dir AgIn call s:ag_in(<f-args>)
