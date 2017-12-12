@@ -6,7 +6,7 @@ zplug "lukechilds/zsh-nvm"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-autosuggestions"
-zplug "plugins/z", from:oh-my-zsh
+zplug "rupa/z", use:z.sh
 zplug "plugins/bundler", from:oh-my-zsh
 zplug "docker/docker", use:contrib/completion/zsh
 zplug "docker/compose", use:contrib/completion/zsh
@@ -45,4 +45,3 @@ eval "$(rbenv init -)"
 # Since OSX Sierra doesn't save SSH keys into the keychain anymore
 # Ref: https://blog.elao.com/en/tech/ssh-agent-does-not-automatically-load-passphrases-on-the-osx-sierra-keychain/
 ssh-add -KA &> /dev/null
-. /vagrant/common.rc
