@@ -78,7 +78,6 @@ $ sudo apt-get install silversearcher-ag
 ### Install rbenv
 
 #### OSX
->>>>>>> Stashed changes
 
 ```
 $ brew install rbenv
