@@ -19,3 +19,6 @@
     ~/.gitconfig: .gitconfig
     ~/.gitignore_global: .gitignore_global
     ~/.config/nvim/init.vim: init.vim
+    ~/.config/alacritty/alacritty.yml: alacritty.yml
+    ~/.phoenix.js: .phoenix.js
+    ~/.tmux.conf: .tmux.conf

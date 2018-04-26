@@ -42,6 +42,9 @@ export EDITOR=nvim
 [ -f ~/.zsh_custom ] && source ~/.zsh_custom # Allow custom stuff that you have per machine.
 eval "$(rbenv init -)"
 
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 # Since OSX Sierra doesn't save SSH keys into the keychain anymore
 # Ref: https://blog.elao.com/en/tech/ssh-agent-does-not-automatically-load-passphrases-on-the-osx-sierra-keychain/
 ssh-add -KA &> /dev/null

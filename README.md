@@ -23,7 +23,7 @@ $ chsh -s /bin/zsh
 # Exit and re-login
 ```
 
-### Install zplug
+### Install zplug 
 
 #### OSX
 
@@ -109,6 +109,29 @@ You might also want to install node using nvm that was installed from one of the
 $ nvm install v7
 ```
 
-## Note about using the solarized color scheme
+### Install Alacritty, Tmux, and Phoenix on OSX
 
-For the neovim solarized color scheme to properly work, in my case I'm using iTerm, I have to pick the solarized color profile.
+This is only for my OSX setup but should also be doable in Ubuntu.
+I use Alacritty as my terminal and then Phoenix to run my script
+to toggle the terminal with a hotkey.
+
+Install Alacritty https://github.com/jwilm/alacritty.
+
+Then install Tmux and TPM.
+
+```
+$ brew install tmux
+$ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+
+Install tmux plugins.
+```
+$ tmux # Start session
+# Then install plugins with Prefix + I
+```
+
+Then install Phoenix.
+
+```
+$ brew cask install phoenix
+```
