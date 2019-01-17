@@ -28,6 +28,8 @@ Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
 Plug 'tpope/vim-eunuch'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
 call plug#end()
 
 " General
@@ -102,6 +104,13 @@ nmap <silent> <leader>g :TestVisit<CR>
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 nmap <silent> <leader>ad <Plug>(ale_detail)
+
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\}
+
+let g:ale_fix_on_save = 1
 
 " Vim JSX and JavaScript
 let g:jsx_ext_required = 0
