@@ -14,8 +14,17 @@ Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-fugitive'
+Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'scrooloose/nerdcommenter'
+
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'wokalski/autocomplete-flow'
+" For func argument completion
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
+Plug 'takkii/Bignyanco'
+
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-rails'
 Plug 'w0rp/ale'
@@ -30,6 +39,9 @@ Plug 'tpope/vim-eunuch'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
+Plug 'posva/vim-vue'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 
 " General
@@ -77,20 +89,7 @@ let g:NERDTreeMinimalUI = 1
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#omni#functions = {}
-let g:deoplete#sources = {}
-let g:deoplete#sources._ = ['buffer']
-let g:deoplete#omni#input_patterns = {}
-
-" Elm
-let g:polyglot_disabled = ['elm']
-let g:elm_detailed_complete = 1
-let g:elm_format_autosave = 1
-let g:elm_make_show_warnings = 1
-let g:deoplete#omni#functions.elm = ['elm#Complete']
-let g:deoplete#omni#input_patterns.elm = '[^ \t]+'
-let g:deoplete#sources.elm = ['omni'] + g:deoplete#sources._
-let g:elm_setup_keybindings = 0 " Disable because we need some bindings for ale
+let g:neosnippet#enable_completed_snippet = 1
 
 " Vim Test
 let test#strategy = "neovim"
@@ -121,3 +120,7 @@ let g:ale_fix_on_save = 1
 " Vim JSX and JavaScript
 let g:jsx_ext_required = 0
 let g:javascript_plugin_flow = 1
+
+" Vim Go
+let g:go_fmt_command = 'goimports' " Run goimports along gofmt on each save
+let g:go_auto_type_info = 1 " Automatically get signature/type info for object under cursor

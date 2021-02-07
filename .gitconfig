@@ -9,7 +9,7 @@
   out = log origin..HEAD
 [user]
   name = Erick Bajao
-  email = fcbajao@gmail.com
+	email = fbajao@gitlab.com
 [color]
   branch = auto
   diff = auto
