@@ -42,6 +42,7 @@ Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
 Plug 'posva/vim-vue'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'tpope/vim-rhubarb'
 call plug#end()
 
 " General
@@ -75,6 +76,9 @@ command! -nargs=+ -complete=dir AgIn call s:ag_in(<f-args>)
 map <C-X> <ESC>:tabnext<CR>
 map <C-Z> <ESC>:tabprevious<CR>
 
+" Fix for proper copying to clipboard
+" https://vi.stackexchange.com/questions/14486/what-does-it-mean-to-set-clipboard-unnamed#comment51393_17058
+set clipboard+=unnamedplus
 " Copy to system clipboard
 vnoremap  <leader>y  "+y
 
