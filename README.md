@@ -23,7 +23,11 @@ $ chsh -s /bin/zsh
 # Exit and re-login
 ```
 
-### Install zplug 
+### Install asdf
+
+Use the `ZSH + Git` [method](http://asdf-vm.com/guide/getting-started.html#_3-install-asdf).
+
+### Install zplug
 
 #### OSX
 
@@ -75,24 +79,6 @@ $ sudo apt-get update
 $ sudo apt-get install silversearcher-ag
 ```
 
-### Install rbenv
-
-#### OSX
-
-```
-$ brew install rbenv
-```
-
-#### Ubuntu
-
-```
-$ git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-$ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zsh_custom
-# exit and re-login then let's install ruby-build plugin
-$ mkdir -p "$(rbenv root)"/plugins
-$ git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
-```
-
 ## Installation
 
 Install the dotfiles with dotbot.
@@ -103,11 +89,6 @@ $ ./install
 Then open a new terminal window and zplug will ask to install some plugins.
 
 Also, run `:PlugInstall` on the first time you open neovim.
-
-You might also want to install node using nvm that was installed from one of the zsh plugins.
-```
-$ nvm install v7
-```
 
 ### Install Alacritty, Tmux, and Phoenix on OSX
 

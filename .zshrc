@@ -7,9 +7,6 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "rupa/z", use:z.sh
-zplug "plugins/bundler", from:oh-my-zsh
-zplug "docker/docker", use:contrib/completion/zsh
-zplug "docker/compose", use:contrib/completion/zsh
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -40,8 +37,6 @@ setopt share_history # share history between terminals
 export EDITOR=nvim
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.zsh_custom ] && source ~/.zsh_custom # Allow custom stuff that you have per machine.
-# Disabling rbenv in favor of asdf
-#eval "$(rbenv init -)"
 
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
