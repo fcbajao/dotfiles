@@ -94,6 +94,8 @@ let g:NERDTreeMinimalUI = 1
 " Deoplete
 let g:deoplete#enable_at_startup = 1
 let g:neosnippet#enable_completed_snippet = 1
+" Make sure to point this to the latest installed python version
+let g:python3_host_prog = '~/.asdf/installs/python/3.10.0/bin/python'
 
 " Vim Test
 let test#strategy = "neovim"
