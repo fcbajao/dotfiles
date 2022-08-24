@@ -22,7 +22,6 @@ Plug 'wokalski/autocomplete-flow'
 " For func argument completion
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
-Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 Plug 'takkii/Bignyanco'
 
 Plug 'terryma/vim-multiple-cursors'
@@ -97,6 +96,10 @@ let g:neosnippet#enable_completed_snippet = 1
 " Make sure to point this to the latest installed python version
 let g:python3_host_prog = '~/.asdf/installs/python/3.10.0/bin/python'
 
+call deoplete#custom#option('omni_patterns', {
+\ 'go': '[^. *\t]\.\w*',
+\})
+
 " Vim Test
 let test#strategy = "neovim"
 nmap <silent> <leader>t :TestNearest<CR>
@@ -118,10 +121,14 @@ let g:ale_fixers = {
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'ruby': ['rubocop'],
+\   'markdown': ['vale', 'mardownlint'],
 \}
 
 let g:ale_linters_explicit = 1
 let g:ale_fix_on_save = 1
+
+" Ruby
+let g:ale_ruby_rubocop_executable = 'bundle'
 
 " Vim JSX and JavaScript
 let g:jsx_ext_required = 0

@@ -45,4 +45,12 @@ export LC_ALL=en_US.UTF-8
 # Ref: https://blog.elao.com/en/tech/ssh-agent-does-not-automatically-load-passphrases-on-the-osx-sierra-keychain/
 ssh-add -KA &> /dev/null
 
+alias run_workhorse_tests="grc make clean test"
+
 . $HOME/.asdf/asdf.sh
+
+# Added by GDK bootstrap
+export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig:${PKG_CONFIG_PATH}"
+
+# Added by GDK bootstrap
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@1.1 --with-readline-dir=/usr/local/opt/readline"
