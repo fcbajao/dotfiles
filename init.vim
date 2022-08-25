@@ -94,7 +94,7 @@ let g:NERDTreeMinimalUI = 1
 let g:deoplete#enable_at_startup = 1
 let g:neosnippet#enable_completed_snippet = 1
 " Make sure to point this to the latest installed python version
-let g:python3_host_prog = '~/.asdf/installs/python/3.10.0/bin/python'
+let g:python3_host_prog = '~/.asdf/shims/python'
 
 call deoplete#custom#option('omni_patterns', {
 \ 'go': '[^. *\t]\.\w*',
