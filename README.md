@@ -47,3 +47,17 @@ Then install Phoenix.
 ```
 $ brew cask install phoenix
 ```
+
+### Troubleshooting
+
+When you get the following error:
+```
+_complete:96: bad math expression: operand expected at end of string
+```
+
+Run the following:
+```
+$ compaudit | xargs chmod g-w
+```
+
+Ref: https://stackoverflow.com/a/66466076
