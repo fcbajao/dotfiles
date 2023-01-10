@@ -13,13 +13,17 @@ ln -srvf .zshrc ~/.zshrc
 ln -srvf .gitconfig ~/.gitconfig
 ln -srvf .gitignore_global ~/.gitignore_global
 ln -srvf init.vim ~/.config/nvim/init.vim
-ln -srvf alacritty.vim ~/.config/nvim/alacritty.vim
+ln -srvf alacritty.yml ~/.config/alacritty/alacritty.yml
 ln -srvf .phoenix.js ~/.phoenix.js
 ln -srvf .tmux.conf ~/.tmux.conf
 
-echo "Making sure apt-get is up to date..."
-sudo apt-get update
-sudo apt-get upgrade -y
+if ! [ -x "$(command -v apt-get)" ]; then
+  echo "No apt-get found, assuming this is OSX. No need to apt-get update."
+else
+  echo "Making sure apt-get is up to date..."
+  sudo apt-get update
+  sudo apt-get upgrade -y
+fi
 
 echo "Installing neovim Plug!"
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -65,8 +69,8 @@ else
   echo "Installing ruby dev dependencies..."
   sudo apt-get install -y autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm6 libgdbm-dev libdb-dev
 fi
-asdf install ruby latest
-asdf global ruby latest
+asdf install ruby 3.0.5
+asdf global ruby 3.0.5
 
 if asdf plugin list | grep -q golang; then
   echo "asdf golang plugin already installed, skipping..."
