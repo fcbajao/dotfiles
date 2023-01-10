@@ -186,4 +186,8 @@ gem install neovim
 npm install -g neovim
 npm install -g typescript
 
+# Ref: https://github.com/alacritty/alacritty/issues/4616#issuecomment-1236413444
+echo "Disabling font smoothing for Alacritty..."
+defaults write org.Alacritty AppleFontSmoothing -int 0
+
 echo "Done."
