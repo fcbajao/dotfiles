@@ -45,7 +45,9 @@ export LC_ALL=en_US.UTF-8
 # Ref: https://blog.elao.com/en/tech/ssh-agent-does-not-automatically-load-passphrases-on-the-osx-sierra-keychain/
 ssh-add -KA &> /dev/null
 
-alias run_workhorse_tests="grc make clean test"
+alias run_workhorse_tests="make clean test"
+alias recompile_workhorse="make clean install && gdk restart gitlab-workhorse"
+alias bspec="bundle exec rspec"
 
 . $HOME/.asdf/asdf.sh
 
