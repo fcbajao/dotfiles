@@ -12,10 +12,13 @@ Plug 'Yggdroot/indentLine'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
-Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-fugitive'
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'scrooloose/nerdcommenter'
+
+" Leap
+Plug 'tpope/vim-repeat'
+Plug 'ggandor/leap.nvim'
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'wokalski/autocomplete-flow'
@@ -137,3 +140,6 @@ let g:javascript_plugin_flow = 1
 " Vim Go
 let g:go_fmt_command = 'goimports' " Run goimports along gofmt on each save
 let g:go_auto_type_info = 1 " Automatically get signature/type info for object under cursor
+
+" Leap
+lua require('leap').add_default_mappings()
