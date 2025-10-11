@@ -1,58 +1,46 @@
-export ZPLUG_HOME=/usr/local/opt/zplug
-source $ZPLUG_HOME/init.zsh
+#!/bin/zsh
 
-zplug "akz92/clean", as:theme
-zplug "lukechilds/zsh-nvm"
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "zsh-users/zsh-history-substring-search"
-zplug "zsh-users/zsh-autosuggestions"
-zplug "rupa/z", use:z.sh
+# Create a temporary copy of zshrc
+cp ~/.zshrc ~/.zshrc.tmp
 
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
+# Add profiling code at the beginning
+echo '
+zmodload zsh/datetime
+setopt PROMPT_SUBST
+PS4='+$EPOCHREALTIME %N:%i> '
+logfile=$(mktemp zsh_profile.XXXXXXXX)
+exec 3>&2 2>$logfile
+setopt XTRACE
+' | cat - ~/.zshrc.tmp > ~/.zshrc.profile
 
-# Then, source plugins and add commands to $PATH
-zplug load
+# Start a new shell to collect profiling data
+ZDOTDIR=~ zsh -i -c exit
 
-# END OF ZPLUG STUFF
+# Process the log file
+echo "\nStartup time breakdown:"
+echo "----------------------"
+grep -v "prompt_status" $logfile | grep -v "prompt_dir" | \
+awk '{
+    if (NR > 1) {
+        duration = $1 - last_time
+        printf "%.4fs - %s\n", duration, substr($0, index($0,$3))
+    }
+    last_time = $1
+}' | sort -nr | head -n 20
 
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=240'
+# Calculate total time
+total_time=$(awk 'NR==1{first=$1} END{printf "%.4f", $1-first}' $logfile)
+echo "\nTotal startup time: ${total_time}s"
 
-# For history substring search
-bindkey -M emacs '^P' history-substring-search-up
-bindkey -M emacs '^N' history-substring-search-down
+# Cleanup
+rm $logfile
+mv ~/.zshrc.tmp ~/.zshrc
 
-# History sharing stuff
-export HISTSIZE=50000
-export SAVEHIST=$HISTSIZE
-export HISTFILE=~/.zsh_history
-setopt inc_append_history # append every command to history after execute
-setopt share_history # share history between terminals
-
-export EDITOR=nvim
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f ~/.zsh_custom ] && source ~/.zsh_custom # Allow custom stuff that you have per machine.
-
-export LC_CTYPE=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-
-# Since OSX Sierra doesn't save SSH keys into the keychain anymore
-# Ref: https://blog.elao.com/en/tech/ssh-agent-does-not-automatically-load-passphrases-on-the-osx-sierra-keychain/
-ssh-add -KA &> /dev/null
-
-alias run_workhorse_tests="make clean test"
-alias recompile_workhorse="make clean install && gdk restart gitlab-workhorse"
-alias bspec="bundle exec rspec"
-
-. $HOME/.asdf/asdf.sh
-
-# Added by GDK bootstrap
-export PKG_CONFIG_PATH="/usr/local/opt/icu4c/lib/pkgconfig:${PKG_CONFIG_PATH}"
-
-# Added by GDK bootstrap
-export RUBY_CONFIGURE_OPTS="--with-openssl-dir=/usr/local/opt/openssl@1.1 --with-readline-dir=/usr/local/opt/readline"
+echo "\nSuggested improvements:"
+echo "---------------------"
+# Check for specific slow components
+grep "nvm" ~/.zshrc >/dev/null && echo "- Consider using 'defer:1' for nvm plugin"
+grep "conda initialize" ~/.zshrc >/dev/null && echo "- Consider removing or deferring conda initialization"
+grep "rbenv init" ~/.zshrc >/dev/null && echo "- Consider lazy loading rbenv"
+grep "pyenv init" ~/.zshrc >/dev/null && echo "- Consider lazy loading pyenv"
+grep "nodenv init" ~/.zshrc >/dev/null && echo "- Consider lazy loading nodenv"
