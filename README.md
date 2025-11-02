@@ -1,63 +1,91 @@
 # Dotfiles
 
-My personal dotfiles.
+Modern and minimal development environment setup for Linux & macOS — powered by **Zsh**, **Antidote**, and **mise**, with optional **Phoenix** for macOS shortcuts.
 
-## Prerequisites
+---
 
-### Make zsh your default shell.
+## What’s Inside
 
-#### OSX
+| Tool                | Purpose                           |
+| ------------------- | --------------------------------- |
+| **Zsh**             | Main shell                        |
+| **Antidote**        | Zsh plugin manager                |
+| **mise**            | Runtime & tool version manager    |
+| **Neovim**          | Main editor                       |
+| **Node (npm)**      | JavaScript/TypeScript runtime     |
+| **Ruby**            | For Rails and scripting           |
+| **tmux**            | Terminal multiplexer              |
+| **Phoenix (macOS)** | Window manager & Alacritty hotkey |
 
-```
-$ brew install zsh
-# Then append /usr/local/bin/zsh to /etc/shells
-$ chsh -s /usr/local/bin/zsh
-```
-#### Ubuntu
+---
 
-```
-$ sudo apt-get update
-$ sudo apt-get upgrade
-$ sudo apt-get install zsh
-$ chsh -s /bin/zsh
-# Exit and re-login
-```
+## Prerequisites (Manual Setup Once)
 
-## Installation
+Install the minimal base system tools before running any scripts:
 
-Install the dotfiles with dotbot.
-```
-$ ./setup.sh
-```
+### Linux (Ubuntu/Debian)
 
-Then open a new terminal window and zplug will ask to install some plugins.
-
-Also, run `:PlugInstall` on the first time you open neovim.
-
-### Install Alacritty and Phoenix on OSX
-
-This is only for my OSX setup but should also be doable in Ubuntu.
-I use Alacritty as my terminal and then Phoenix to run my script
-to toggle the terminal with a hotkey.
-
-Install Alacritty https://github.com/jwilm/alacritty.
-
-Then install Phoenix.
-
-```
-$ brew cask install phoenix
+```bash
+sudo apt update
+sudo apt install -y zsh git curl
+chsh -s "$(which zsh)"
 ```
 
-### Troubleshooting
+### macOS
 
-When you get the following error:
-```
-_complete:96: bad math expression: operand expected at end of string
-```
-
-Run the following:
-```
-$ compaudit | xargs chmod g-w
+```bash
+xcode-select --install
+brew install zsh git curl
+chsh -s "$(which zsh)"
 ```
 
-Ref: https://stackoverflow.com/a/66466076
+Then restart your terminal or run `exec zsh` to start using Zsh.
+
+---
+
+## 🚀 Install & Bootstrap
+
+```bash
+# Clone this repository
+git clone https://github.com/fcbajao/dotfiles ~/dotfiles
+cd ~/dotfiles
+
+# Install mise
+curl https://mise.run | sh
+
+# Run setup task
+mise run bootstrap-(ubuntu|mac)
+```
+
+---
+
+## macOS: Alacritty + Phoenix Shortcut
+
+I use **Phoenix** as a lightweight window manager and hotkey launcher to toggle **Alacritty**.
+
+### Install (manual — not managed by mise)
+
+Phoenix is a GUI app and cannot be installed via mise. Use Homebrew cask instead:
+
+```bash
+brew install --cask phoenix
+```
+
+Then download and install Alacritty app from https://alacritty.org/.
+
+### Setup
+
+The mise task `bootstrap-mac` will do the following:
+
+```bash
+ln -sf ~/dotfiles/.phoenix.js ~/.phoenix.js
+```
+
+Then launch Phoenix (`open -a Phoenix`). The `.phoenix.js` script defines a hotkey to summon or focus Alacritty instantly.
+
+> Phoenix automatically reloads configs when `.phoenix.js` changes — or use the menu bar → **Reload Config**.
+
+
+## Ubuntu: Alacritty Keyboard Shortcut
+
+The mise task `bootstrap-ubuntu` will symlink `toggle_alacritty` to the `~/.local/bin` thus we can add this command directly to the keyboard shortcuts settings section.

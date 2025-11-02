@@ -1,0 +1,11 @@
+# === Core UX ===
+zsh-users/zsh-autosuggestions
+zsh-users/zsh-syntax-highlighting kind:defer
+zsh-users/zsh-history-substring-search
+zsh-users/zsh-completions
+
+# === FZF bindings/completions (CLI must be installed via brew/apt) ===
+junegunn/fzf kind:path
+
+# === Theme (your old akz92/clean) ===
+akz92/clean

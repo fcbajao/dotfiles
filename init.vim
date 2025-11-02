@@ -12,7 +12,7 @@ Plug 'ntpeters/vim-better-whitespace'
 " Files and Navigation
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Git integration
@@ -190,8 +190,11 @@ autocmd FileType go nmap <leader>gd <Plug>(go-doc)
 autocmd FileType go nmap <leader>gt <Plug>(go-test)
 autocmd FileType go nmap <leader>gtf <Plug>(go-test-func)
 
-" Leap
-lua require('leap').add_default_mappings()
+lua << EOF
+-- Recommended default leap bindings (see :help leap-mappings)
+vim.keymap.set({'n','x','o'}, 's', '<Plug>(leap)')
+vim.keymap.set('n', 'S', '<Plug>(leap-from-window)')
+EOF
 
 " nvim-cmp Configuration
 lua << EOF
@@ -232,55 +235,50 @@ cmp.setup({
 })
 EOF
 
-" LSP Configuration for Go
 lua << EOF
-local lspconfig = require('lspconfig')
+-- Capabilities from nvim-cmp
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
--- Go LSP Setup
-lspconfig.gopls.setup{
-  cmd = {"gopls", "serve"},
+-- Go (gopls)
+vim.lsp.config('gopls', {
+  cmd = { 'gopls', 'serve' },
+  capabilities = capabilities,
   settings = {
     gopls = {
-      analyses = {
-        unusedparams = true,
-      },
+      analyses = { unusedparams = true },
       staticcheck = true,
     },
   },
-  capabilities = require('cmp_nvim_lsp').default_capabilities(),
-}
+})
+vim.lsp.enable('gopls')
 
--- Protobuf LSP Setup
-lspconfig.buf_ls.setup{
-  cmd = {"bufls", "serve"},
-  filetypes = { "proto" },
-  capabilities = require('cmp_nvim_lsp').default_capabilities(),
-}
+-- Protobuf (bufls)
+vim.lsp.config('buf_ls', {
+  cmd = { 'bufls', 'serve' },
+  filetypes = { 'proto' },
+  capabilities = capabilities,
+})
+vim.lsp.enable('buf_ls')
 
--- Minimal ruby-lsp setup for definition jumping and completion only (global)
-lspconfig.ruby_lsp.setup{
-  cmd = { 'ruby-lsp' },  -- Use global ruby-lsp
-  capabilities = require('cmp_nvim_lsp').default_capabilities(),
+-- Ruby (ruby-lsp)
+vim.lsp.config('ruby_lsp', {
+  cmd = { 'ruby-lsp' },
+  capabilities = capabilities,
   init_options = {
-    -- Only enable definition jumping and completion
-    enabledFeatures = {
-      "definition",
-      "completion"
-    },
+    enabledFeatures = { 'definition', 'completion' },
     indexing = {
       includedPatterns = {
-        "app/**/*.rb",
-        "ee/app/**/*.rb",
-        "lib/**/*.rb",
-        "ee/lib/**/*.rb",
-        "spec/support/helpers/**/*.rb",
-        "ee/spec/support/helpers/**/*.rb"
+        'app/**/*.rb', 'ee/app/**/*.rb', 'lib/**/*.rb', 'ee/lib/**/*.rb',
+        'spec/support/helpers/**/*.rb', 'ee/spec/support/helpers/**/*.rb'
       }
     },
-    formatter = "none"
-  }
-}
+    formatter = 'none',
+  },
+})
+vim.lsp.enable('ruby_lsp')
+EOF
 
+lua << EOF
 -- https://dx13.co.uk/articles/2023/04/08/neovim-reveal-in-finder/
 vim.api.nvim_create_user_command('Rfinder',
     function()

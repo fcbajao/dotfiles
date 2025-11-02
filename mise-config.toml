@@ -1,0 +1,6 @@
+[tools]
+# Core runtimes managed by mise (portable across OSes)
+neovim = "latest"
+node   = "latest"
+ruby   = "latest"
+rust   = "latest"

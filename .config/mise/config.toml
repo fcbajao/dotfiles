@@ -1,0 +1,102 @@
+[tasks.link-dotfiles]
+description = "Create config dirs and symlink dotfiles"
+run = """
+  echo "Linking config files..."
+  mkdir -p ~/.config/nvim
+  mkdir -p ~/.config/zsh
+  mkdir -p ~/.config/mise
+
+  ln -sf ~/dotfiles/.zshrc                                ~/.zshrc
+  ln -sf ~/dotfiles/.gitconfig                            ~/.gitconfig
+  ln -sf ~/dotfiles/.gitignore_global                     ~/.gitignore_global
+  ln -sf ~/dotfiles/mise-config.toml                      ~/.config/mise/config.toml
+  ln -sf ~/dotfiles/init.vim                              ~/.config/nvim/init.vim
+  ln -sf ~/dotfiles/zsh_plugins.txt                       ~/.config/zsh/zsh_plugins.txt
+  ln -sf ~/dotfiles/.tmux.conf                            ~/.tmux.conf
+"""
+
+[tasks.install-alacritty-ubuntu]
+description = "Install Alacritty in Ubuntu"
+run = """
+  sudo apt install -y cmake g++ pkg-config libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
+  git clone https://github.com/alacritty/alacritty.git ~/alacritty
+  cd ~/alacritty
+  cargo install --path alacritty
+
+  mkdir -p ~/.local/bin
+  ln -sf ~/dotfiles/.local/bin/toggle_alacritty.sh ~/.local/bin/toggle_alacritty
+  chmod +x ~/.local/bin/toggle_alacritty
+
+  mkdir -p ~/.config/alacritty
+  ln -sf ~/dotfiles/alacritty.toml ~/.config/alacritty/alacritty.toml
+"""
+
+[tasks.install-antidote]
+description = "Install Antidote"
+run = """
+  git clone --depth=1 https://github.com/mattmc3/antidote.git ~/.antidote
+"""
+
+[tasks.install-vim-plug]
+description = "Install vim-plug for Neovim"
+run = """
+  curl -fsSL -o ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"""
+
+# ------------------------------------------------------------
+# macOS bootstrap
+# ------------------------------------------------------------
+[tasks.bootstrap-mac]
+description = "macOS: install CLI deps via Homebrew, mise install, link dotfiles"
+run = """
+  set -e
+  echo "[macOS] Installing CLI packages via Homebrew..."
+  brew update
+  brew install fzf the_silver_searcher tmux
+
+  # Optional GUI apps (cannot be installed by mise):
+  brew install --cask phoenix
+
+  mise run link-dotfiles
+
+  echo "[macOS] Running mise install..."
+  mise install
+
+  mise run install-antidote
+  mise run install-vim-plug
+  mise run install-kitty
+
+  mkdir -p ~/.config/alacritty
+  ln -sf ~/dotfiles/.config/alacritty/alacritty.yml       ~/.config/alacritty/alacritty.yml
+  ln -sf ~/dotfiles/.phoenix.js                           ~/.phoenix.js  # macOS only; harmless on Linux
+
+  echo "[macOS] Done."
+"""
+
+# ------------------------------------------------------------
+# Ubuntu/Debian bootstrap
+# ------------------------------------------------------------
+[tasks.bootstrap-ubuntu]
+description = "Ubuntu/Debian: install CLI deps via apt, mise install, link dotfiles"
+env = { RUBY_BUILD_BUILD_OPENSSL = "0", RUBY_CONFIGURE_OPTS = "--with-openssl-dir=/usr" }
+run = """
+  set -e
+  echo "[Ubuntu] Installing CLI packages via apt..."
+  sudo apt-get update
+  sudo apt-get install -y fzf silversearcher-ag tmux \
+  build-essential gcc make perl pkg-config autoconf bison \
+  libssl-dev zlib1g-dev libreadline-dev libyaml-dev libffi-dev \
+  libgdbm-dev libgdbm-compat-dev libncurses-dev
+
+  mise run link-dotfiles
+
+  echo "[Ubuntu] Running mise install..."
+  mise install
+
+  mise run install-antidote
+  mise run install-vim-plug
+  mise run install-alacritty-ubuntu
+
+  echo "[Ubuntu] Done."
+"""
