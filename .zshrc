@@ -1,7 +1,5 @@
 # ---------- mise ----------
-if command -v mise >/dev/null 2>&1; then
-  eval "$(mise activate zsh)"
-fi
+eval "$(~/.local/bin/mise activate zsh)"
 
 # ---------- Antidote (replaces zplug) ----------
 if [[ -r "${HOME}/.antidote/antidote.zsh" ]]; then

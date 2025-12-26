@@ -78,7 +78,7 @@ colorscheme solarized-osaka
 
 " Treesitter Configuration
 lua << EOF
-require'nvim-treesitter.configs'.setup {
+require'nvim-treesitter'.setup {
   ensure_installed = {
     "ruby",
     "javascript",

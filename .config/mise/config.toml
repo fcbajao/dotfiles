@@ -65,7 +65,6 @@ run = """
 
   mise run install-antidote
   mise run install-vim-plug
-  mise run install-kitty
 
   mkdir -p ~/.config/alacritty
   ln -sf ~/dotfiles/.config/alacritty/alacritty.yml       ~/.config/alacritty/alacritty.yml
