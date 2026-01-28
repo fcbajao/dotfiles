@@ -22,7 +22,7 @@ Plug 'tpope/vim-rhubarb'
 
 " Navigation and Text manipulation
 Plug 'tpope/vim-repeat'
-Plug 'ggandor/leap.nvim'
+Plug 'https://codeberg.org/andyg/leap.nvim.git'
 Plug 'scrooloose/nerdcommenter'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'jiangmiao/auto-pairs'

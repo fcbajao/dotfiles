@@ -23,10 +23,6 @@ run = """
   cd ~/alacritty
   cargo install --path alacritty
 
-  mkdir -p ~/.local/bin
-  ln -sf ~/dotfiles/.local/bin/toggle_alacritty.sh ~/.local/bin/toggle_alacritty
-  chmod +x ~/.local/bin/toggle_alacritty
-
   mkdir -p ~/.config/alacritty
   ln -sf ~/dotfiles/alacritty.toml ~/.config/alacritty/alacritty.toml
 """
