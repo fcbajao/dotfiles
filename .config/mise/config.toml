@@ -15,6 +15,39 @@ run = """
   ln -sf ~/dotfiles/.tmux.conf                            ~/.tmux.conf
 """
 
+[tasks.setup-gnome-alacritty-toggle]
+description = "Install local GNOME Alacritty toggle extension"
+run = """
+  mkdir -p ~/.local/share/gnome-shell/extensions
+  ln -sfn ~/dotfiles/.local/share/gnome-shell/extensions/alacritty-toggle@dotfiles.local \
+    ~/.local/share/gnome-shell/extensions/alacritty-toggle@dotfiles.local
+
+  glib-compile-schemas \
+    ~/.local/share/gnome-shell/extensions/alacritty-toggle@dotfiles.local/schemas
+
+  gsettings --schemadir ~/.local/share/gnome-shell/extensions/alacritty-toggle@dotfiles.local/schemas \
+    set org.gnome.shell.extensions.alacritty-toggle toggle-key "['<Control>grave']"
+  gsettings --schemadir ~/.local/share/gnome-shell/extensions/alacritty-toggle@dotfiles.local/schemas \
+    set org.gnome.shell.extensions.alacritty-toggle command "$HOME/.cargo/bin/alacritty"
+  gsettings --schemadir ~/.local/share/gnome-shell/extensions/alacritty-toggle@dotfiles.local/schemas \
+    set org.gnome.shell.extensions.alacritty-toggle app-id "Alacritty.desktop"
+
+  # Enable in current profile; if this fails, log out/in and enable from Extensions app.
+  python3 - <<'PY'
+import ast, subprocess
+uuid = 'alacritty-toggle@dotfiles.local'
+current = subprocess.check_output(
+    ['gsettings', 'get', 'org.gnome.shell', 'enabled-extensions'], text=True
+).strip()
+exts = ast.literal_eval(current)
+if uuid not in exts:
+    exts.append(uuid)
+    value = '[' + ', '.join(f"'{e}'" for e in exts) + ']'
+    subprocess.check_call(['gsettings', 'set', 'org.gnome.shell', 'enabled-extensions', value])
+print('enabled-extensions updated')
+PY
+"""
+
 [tasks.install-alacritty-ubuntu]
 description = "Install Alacritty in Ubuntu"
 run = """
@@ -103,6 +136,7 @@ run = """
   mise run install-antidote
   mise run install-vim-plug
   mise run install-alacritty-fedora
+  mise run setup-gnome-alacritty-toggle
 
   echo "[Fedora] Done."
 """
@@ -130,6 +164,7 @@ run = """
   mise run install-antidote
   mise run install-vim-plug
   mise run install-alacritty-ubuntu
+  mise run setup-gnome-alacritty-toggle
 
   echo "[Ubuntu] Done."
 """

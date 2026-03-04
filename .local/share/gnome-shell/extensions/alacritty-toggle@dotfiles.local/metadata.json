@@ -1,0 +1,8 @@
+{
+  "uuid": "alacritty-toggle@dotfiles.local",
+  "name": "Alacritty Toggle (Local)",
+  "description": "Toggle Alacritty window with a global hotkey",
+  "shell-version": ["49"],
+  "version": 1,
+  "settings-schema": "org.gnome.shell.extensions.alacritty-toggle"
+}

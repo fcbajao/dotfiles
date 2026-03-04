@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.alacritty-toggle"
+          path="/org/gnome/shell/extensions/alacritty-toggle/">
+    <key name="toggle-key" type="as">
+      <default><![CDATA[['<Control>grave']]]></default>
+      <summary>Keybinding to toggle Alacritty</summary>
+    </key>
+    <key name="command" type="s">
+      <default>'alacritty'</default>
+      <summary>Launch command for Alacritty</summary>
+    </key>
+    <key name="app-id" type="s">
+      <default>'Alacritty.desktop'</default>
+      <summary>Desktop app id for Alacritty</summary>
+    </key>
+  </schema>
+</schemalist>

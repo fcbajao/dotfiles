@@ -1,10 +1,6 @@
-This updated **README.md** reflects your new setup using the GNOME extension, ensuring a robust "Quake-mode" experience that works on both Wayland and X11.
-
----
-
 # Dotfiles
 
-Modern and minimal development environment setup for Linux & macOS — powered by **Zsh**, **Antidote**, and **mise**, with **Phoenix** for macOS or **GNOME Extensions** for Linux.
+Modern and minimal development environment setup for Linux & macOS — powered by **Zsh**, **Antidote**, and **mise**, with **Phoenix** for macOS or a local **GNOME extension** for Linux.
 
 ---
 
@@ -17,7 +13,7 @@ Modern and minimal development environment setup for Linux & macOS — powered b
 | **mise** | Runtime & tool version manager |
 | **Neovim** | Main editor |
 | **Alacritty** | GPU-accelerated terminal |
-| **Alacritty Toggle** | GNOME Extension (Linux) / Phoenix (macOS) |
+| **Alacritty Toggle** | Local GNOME extension (Linux) / Phoenix (macOS) |
 | **tmux** | Terminal multiplexer |
 
 ---
@@ -75,34 +71,17 @@ mise run bootstrap-mac      # macOS
 
 ## Linux: Alacritty Keyboard Shortcut
 
-For Linux with GNOME (Ubuntu/Fedora), we use the [GNOME Alacritty Toggle](https://github.com/axxapy/gnome-alacritty-toggle) extension. This provides a high-performance toggle that handles window focus and minimization natively.
+For Linux with GNOME (Ubuntu/Fedora), we ship a local extension in this repo:
 
-### 1. Install the Extension
+`~/.local/share/gnome-shell/extensions/alacritty-toggle@dotfiles.local`
 
-```bash
-git clone https://github.com/axxapy/gnome-alacritty-toggle.git \
-  ~/.local/share/gnome-shell/extensions/toggle-alacritty@itstime.tech
+The Linux bootstrap tasks automatically symlink, compile schemas, and configure:
 
-```
+- hotkey: **Ctrl + `**
+- command: `$HOME/.cargo/bin/alacritty`
+- app id: `Alacritty.desktop`
 
-### 2. Enable & Configure
-
-After installing, log out and back in (or restart GNOME). Then, enable the extension and apply our custom settings for the **Ctrl + `** hotkey and the **Cargo** binary path:
-
-```bash
-# Define the schema directory for the commands below
-export ALAC_SCHEMA="--schemadir ~/.local/share/gnome-shell/extensions/toggle-alacritty@itstime.tech/schemas"
-
-# Set hotkey to Ctrl + ` (grave)
-gsettings $ALAC_SCHEMA set org.gnome.shell.extensions.toggle-alacritty toggle-key "['<Control>grave']"
-
-# Point to the Alacritty binary installed via Cargo
-gsettings $ALAC_SCHEMA set org.gnome.shell.extensions.toggle-alacritty command "$HOME/.cargo/bin/alacritty"
-
-# Optional: Don't hide the terminal when entering GNOME Overview
-gsettings $ALAC_SCHEMA set org.gnome.shell.extensions.toggle-alacritty hide-on-overview false
-
-```
+If GNOME does not pick up new extensions immediately, log out and back in once.
 
 ---
 
