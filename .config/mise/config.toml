@@ -69,6 +69,44 @@ run = """
   echo "[macOS] Done."
 """
 
+[tasks.install-alacritty-fedora]
+description = "Install Alacritty in Fedora"
+run = """
+  sudo dnf install -y cmake g++ pkg-config fontconfig-devel libxkbcommon-devel python3
+  git clone https://github.com/alacritty/alacritty.git ~/alacritty
+  cd ~/alacritty
+  cargo install --path alacritty
+
+  mkdir -p ~/.config/alacritty
+  ln -sf ~/dotfiles/alacritty.toml ~/.config/alacritty/alacritty.toml
+"""
+
+# ------------------------------------------------------------
+# Fedora bootstrap
+# ------------------------------------------------------------
+[tasks.bootstrap-fedora]
+description = "Fedora/RHEL: install CLI deps via dnf, mise install, link dotfiles"
+env = { RUBY_BUILD_BUILD_OPENSSL = "0", RUBY_CONFIGURE_OPTS = "--with-openssl-dir=/usr" }
+run = """
+  set -e
+  echo "[Fedora] Installing CLI packages via dnf..."
+  sudo dnf install -y fzf the_silver_searcher tmux \
+    gcc make perl pkg-config autoconf bison \
+    openssl-devel zlib-devel readline-devel libyaml-devel libffi-devel \
+    gdbm-devel ncurses-devel @development-tools
+
+  mise run link-dotfiles
+
+  echo "[Fedora] Running mise install..."
+  mise install
+
+  mise run install-antidote
+  mise run install-vim-plug
+  mise run install-alacritty-fedora
+
+  echo "[Fedora] Done."
+"""
+
 # ------------------------------------------------------------
 # Ubuntu/Debian bootstrap
 # ------------------------------------------------------------

@@ -19,6 +19,6 @@
   excludesfile = ~/.gitignore_global
   editor = nvim
 [credential]
-	helper = osxkeychain
+	helper = manager
 [push]
   default = current
