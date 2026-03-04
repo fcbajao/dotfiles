@@ -583,6 +583,7 @@ semantic_escape_chars = """,│`|:"' ()[]{}<>\t"""
 
 [window]
 decorations = "full"
+decorations_theme_variant = "Dark"
 dynamic_padding = false
 opacity = 1.0
 startup_mode = "Maximized"
