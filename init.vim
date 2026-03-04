@@ -265,13 +265,6 @@ vim.lsp.config('ruby_lsp', {
   cmd = { 'ruby-lsp' },
   capabilities = capabilities,
   init_options = {
-    enabledFeatures = { 'definition', 'completion' },
-    indexing = {
-      includedPatterns = {
-        'app/**/*.rb', 'ee/app/**/*.rb', 'lib/**/*.rb', 'ee/lib/**/*.rb',
-        'spec/support/helpers/**/*.rb', 'ee/spec/support/helpers/**/*.rb'
-      }
-    },
     formatter = 'none',
   },
 })

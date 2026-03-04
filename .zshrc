@@ -68,3 +68,10 @@ fi
 
 # ---------- Per-machine overrides ----------
 [[ -f ~/.zsh_custom ]] && source ~/.zsh_custom
+
+# opencode
+export PATH=/home/iamricecake/.opencode/bin:$PATH
+
+# Added by flyctl installer
+export FLYCTL_INSTALL="/home/iamricecake/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
