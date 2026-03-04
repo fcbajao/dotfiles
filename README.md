@@ -4,7 +4,7 @@ This updated **README.md** reflects your new setup using the GNOME extension, en
 
 # Dotfiles
 
-Modern and minimal development environment setup for Linux & macOS — powered by **Zsh**, **Antidote**, and **mise**, with optional **Phoenix** for macOS or **GNOME Extensions** for Ubuntu shortcuts.
+Modern and minimal development environment setup for Linux & macOS — powered by **Zsh**, **Antidote**, and **mise**, with **Phoenix** for macOS or **GNOME Extensions** for Linux.
 
 ---
 
@@ -35,6 +35,14 @@ chsh -s "$(which zsh)"
 
 ```
 
+### Linux (Fedora/RHEL)
+
+```bash
+sudo dnf install -y zsh git curl
+chsh -s "$(which zsh)"
+
+```
+
 ### macOS
 
 ```bash
@@ -56,16 +64,18 @@ cd ~/dotfiles
 # Install mise
 curl https://mise.run | sh
 
-# Run setup task
-mise run bootstrap-(ubuntu|mac)
+# Run setup task for your OS
+mise run bootstrap-fedora  # Fedora/RHEL
+mise run bootstrap-ubuntu   # Ubuntu/Debian
+mise run bootstrap-mac      # macOS
 
 ```
 
 ---
 
-## Ubuntu: Alacritty Keyboard Shortcut
+## Linux: Alacritty Keyboard Shortcut
 
-For Ubuntu (Wayland or X11), we use the [GNOME Alacritty Toggle](https://github.com/axxapy/gnome-alacritty-toggle) extension. This provides a high-performance toggle that handles window focus and minimization natively.
+For Linux with GNOME (Ubuntu/Fedora), we use the [GNOME Alacritty Toggle](https://github.com/axxapy/gnome-alacritty-toggle) extension. This provides a high-performance toggle that handles window focus and minimization natively.
 
 ### 1. Install the Extension
 
